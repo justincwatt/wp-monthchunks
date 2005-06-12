@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: monthchunks
-Version: 1.1
+Version: 1.2
 Plugin URI: http://justinsomnia.org/2005/04/monthchunks-howto/
 Description: Display your monthly archives by year with individual links to each month.
 Author: Justin Watt
@@ -12,6 +12,9 @@ Activate from the Wordpress control panel.
 Edit the header and html structure as necessary to suit your blog.
 
 CHANGELOG
+1.2
+used $wpdb->posts instead of wp_posts as table name
+
 1.1
 used wordpress's get_month_link() function to output link to monthly archive (thanks raphaële)
 
@@ -31,7 +34,7 @@ function monthchunks()
     
     // get an array of the years in which there are posts
     $wpdb->query("SELECT DATE_FORMAT(post_date, '%Y') as post_year
-                  FROM wp_posts
+                  FROM $wpdb->posts
                   GROUP BY post_year
                   ORDER BY post_year DESC");
     $years = $wpdb->get_col();
@@ -45,7 +48,7 @@ function monthchunks()
         // get an array of months for the current year without leading zero
         // sort by month with leading zero
         $wpdb->query("SELECT DATE_FORMAT(post_date, '%c') as post_month
-                      FROM wp_posts
+                      FROM $wpdb->posts
                       WHERE DATE_FORMAT(post_date, '%Y') = $year
                       GROUP BY post_month
                       ORDER BY DATE_FORMAT(post_date, '%m')");
@@ -53,7 +56,7 @@ function monthchunks()
 
         // start the list item displaying the year
         // followed by a line break
-        print "\t<li><strong>" . $year . "</strong><br>\n\t";
+        print "\t<li><strong>" . $year . "</strong><br />\n\t";
         
         // loop through each month, creating a link
         // followed by a single space
