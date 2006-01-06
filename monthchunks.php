@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: monthchunks
-Version: 2.0
+Version: 2.1
 Plugin URI: http://justinsomnia.org/2005/04/monthchunks-howto/
-Description: Display your monthly archives by year with individual links to each month. Replacement for <code>wp_get_archives('type=monthly')</code>
+Description: Display your monthly archives compactly by year with individual links to each month. Replacement for <code>wp_get_archives('type=monthly')</code>
 Author: Justin Watt
 Author URI: http://justinsomnia.org/
 
@@ -15,6 +15,13 @@ INSTRUCTIONS
 
 
 CHANGELOG
+
+2.1
+added year_order and month_format options
+added title="month_name year" attribute (aka tooltips) to the month links 
+limited visible archives to posts with post_status = 'publish'
+revised pretty html output slightly
+added semifix for year = "0000" bug
 
 2.0
 removed <ul></ul> output to make monthchunks more of a drop-in replacement for wp_get_archives()
@@ -36,7 +43,7 @@ turned custom_archive function into monthchunks plugin (thanks jackson)
 LICENSE
 
 monthchunks.php
-Copyright (C) 2005 Justin Watt
+Copyright (C) 2006 Justin Watt
 justincwatt@gmail.com
 http://justinsomnia.org/
 
@@ -56,7 +63,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
 
-function monthchunks()
+function monthchunks($year_order = "ascending", $month_format = "numeric")
 {
     // get access to wordpress' database object
     global $wpdb;
@@ -70,11 +77,33 @@ function monthchunks()
         $current_year  = get_the_time('Y');
     }
     
+    // set SQL order by sort order
+    if ($year_order == "descending")
+    {
+        $year_order = "DESC";
+    }
+    else
+    {
+        $year_order = "ASC";
+    }
+
+    // set format for month display
+    if ($month_format == "alpha")
+    {
+        $month_format = "LEFT(DATE_FORMAT(post_date, '%M'), 1)";
+    }
+    else
+    {
+        $month_format = "DATE_FORMAT(post_date, '%c')";
+    }
+
     // get an array of the years in which there are posts
     $wpdb->query("SELECT DATE_FORMAT(post_date, '%Y') as post_year
                   FROM $wpdb->posts
+                  WHERE post_status = 'publish'
                   GROUP BY post_year
-                  ORDER BY post_year");
+                  HAVING post_year <> '0000'
+                  ORDER BY post_year $year_order");
     $years = $wpdb->get_col();
     
     // each list item will be the year and the months which have blog posts
@@ -82,12 +111,14 @@ function monthchunks()
     {
         // get an array of months for the current year without leading zero
         // sort by month with leading zero
-        $wpdb->query("SELECT DATE_FORMAT(post_date, '%c') as post_month
-                      FROM $wpdb->posts
-                      WHERE DATE_FORMAT(post_date, '%Y') = $year
-                      GROUP BY post_month
-                      ORDER BY DATE_FORMAT(post_date, '%m')");
-        $months = $wpdb->get_col();
+        $months = $wpdb->get_results("SELECT DATE_FORMAT(post_date, '%c') as post_month, 
+                                      $month_format AS display_month, 
+                                      DATE_FORMAT(post_date, '%M') as post_month_name
+                                      FROM $wpdb->posts
+                                      WHERE DATE_FORMAT(post_date, '%Y') = $year
+                                      AND post_status = 'publish'
+                                      GROUP BY DATE_FORMAT(post_date, '%m')
+                                      ORDER BY post_date");
 
         // start the list item displaying the year
         print "<li><strong>$year</strong><br />\n";
@@ -95,25 +126,28 @@ function monthchunks()
         // loop through each month, creating a link
         // followed by a single space
         $month_count = count($months);
-        foreach($months as $month_index => $month)
+        $i = 0;
+        foreach($months as $month)
         {
-            if ($year == $current_year && $month == $current_month)
+            // display the current month in bold without a link
+            if ($year == $current_year && $month->post_month == $current_month)
             {
-                print "<strong>$month</strong>";
+                print "<strong title='$month->post_month_name $year'>$month->display_month</strong>";
             }
             else
             {
-                print "<a href='" . get_month_link($year, $month) . "'>" . $month . "</a>";
+                print "<a href='" . get_month_link($year, $month->post_month) . "' title='$month->post_month_name $year'>" . $month->display_month . "</a>";
             }
 
-            if ($month_index < $month_count-1)
+            if ($i < $month_count-1)
             {
-                print " ";
+                print " \n";
             }
+            $i++;
         }
 
         //end the year list item
-        print "</li>\n";
+        print "</li>\n\n";
     }
 }
 
