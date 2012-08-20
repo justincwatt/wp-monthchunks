@@ -63,37 +63,29 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
 
-function monthchunks($year_order = "ascending", $month_format = "numeric")
-{
+function monthchunks($year_order = "ascending", $month_format = "numeric") {
     // get access to wordpress' database object
     global $wpdb;
     $current_month = "";
     $current_year  = "";
     
     // get current year/month if current page is monthly archive
-    if (is_month())
-    {
+    if (is_month()) {
         $current_month = get_the_time('n');
         $current_year  = get_the_time('Y');
     }
     
     // set SQL order by sort order
-    if ($year_order == "descending")
-    {
+    if ($year_order == "descending") {
         $year_order = "DESC";
-    }
-    else
-    {
+    } else {
         $year_order = "ASC";
     }
 
     // set format for month display
-    if ($month_format == "alpha")
-    {
+    if ($month_format == "alpha") {
         $month_format = "LEFT(DATE_FORMAT(post_date, '%M'), 1)";
-    }
-    else
-    {
+    } else {
         $month_format = "DATE_FORMAT(post_date, '%c')";
     }
 
@@ -107,8 +99,7 @@ function monthchunks($year_order = "ascending", $month_format = "numeric")
     $years = $wpdb->get_col();
     
     // each list item will be the year and the months which have blog posts
-    foreach($years as $year)
-    {
+    foreach ($years as $year) {
         // get an array of months for the current year without leading zero
         // sort by month with leading zero
         $months = $wpdb->get_results("SELECT DATE_FORMAT(post_date, '%c') as post_month, 
@@ -127,20 +118,15 @@ function monthchunks($year_order = "ascending", $month_format = "numeric")
         // followed by a single space
         $month_count = count($months);
         $i = 0;
-        foreach($months as $month)
-        {
+        foreach ($months as $month) {
             // display the current month in bold without a link
-            if ($year == $current_year && $month->post_month == $current_month)
-            {
+            if ($year == $current_year && $month->post_month == $current_month) {
                 print "<strong title='$month->post_month_name $year'>$month->display_month</strong>";
-            }
-            else
-            {
+            } else {
                 print "<a href='" . get_month_link($year, $month->post_month) . "' title='$month->post_month_name $year'>" . $month->display_month . "</a>";
             }
 
-            if ($i < $month_count-1)
-            {
+            if ($i < $month_count-1) {
                 print " \n";
             }
             $i++;
@@ -150,5 +136,3 @@ function monthchunks($year_order = "ascending", $month_format = "numeric")
         print "</li>\n\n";
     }
 }
-
-?>
