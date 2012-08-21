@@ -1,11 +1,12 @@
 <?php
 /*
-Plugin Name: monthchunks
-Version: 2.1
+Plugin Name: Monthchunks
+Version: 2.2
 Plugin URI: http://justinsomnia.org/2005/04/monthchunks-howto/
 Description: Display your monthly archives compactly by year with individual links to each month. Replacement for <code>wp_get_archives('type=monthly')</code>
 Author: Justin Watt
 Author URI: http://justinsomnia.org/
+
 
 INSTRUCTIONS
 
@@ -15,6 +16,9 @@ INSTRUCTIONS
 
 
 CHANGELOG
+
+2.2
+Generate output with a single SQL query, instead of N+1, where N was the number of years of post archives
 
 2.1
 added year_order and month_format options
