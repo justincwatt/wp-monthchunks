@@ -89,50 +89,41 @@ function monthchunks($year_order = "ascending", $month_format = "numeric") {
         $month_format = "DATE_FORMAT(post_date, '%c')";
     }
 
-    // get an array of the years in which there are posts
-    $wpdb->query("SELECT DATE_FORMAT(post_date, '%Y') as post_year
-                  FROM $wpdb->posts
-                  WHERE post_status = 'publish'
-                  GROUP BY post_year
-                  HAVING post_year <> '0000'
-                  ORDER BY post_year $year_order");
-    $years = $wpdb->get_col();
+    // get an array of months in which there are posts
+    $sql = "
+        SELECT DATE_FORMAT(post_date, '%m') as post_month,
+        DATE_FORMAT(post_date, '%Y') as post_year,
+        $month_format as display_month, 
+        DATE_FORMAT(post_date, '%M') as post_month_name
+        FROM $wpdb->posts
+        WHERE post_status = 'publish'
+        GROUP BY post_year, post_month
+        HAVING post_year <> '0000'
+        ORDER BY post_year $year_order, post_month ASC
+    ";
+    $months = $wpdb->get_results($sql);
     
-    // each list item will be the year and the months which have blog posts
-    foreach ($years as $year) {
-        // get an array of months for the current year without leading zero
-        // sort by month with leading zero
-        $months = $wpdb->get_results("SELECT DATE_FORMAT(post_date, '%c') as post_month, 
-                                      $month_format AS display_month, 
-                                      DATE_FORMAT(post_date, '%M') as post_month_name
-                                      FROM $wpdb->posts
-                                      WHERE DATE_FORMAT(post_date, '%Y') = $year
-                                      AND post_status = 'publish'
-                                      GROUP BY DATE_FORMAT(post_date, '%m')
-                                      ORDER BY post_date");
+    // group month result objects by year, to ease output
+    $years = array();
+    foreach ($months as $month) {
+        $years[$month->post_year][] = $month;
+    }
 
+    // each list item will be the year and the months which have blog posts
+    foreach ($years as $year => $months) {
         // start the list item displaying the year
         print "<li><strong>$year</strong><br />\n";
         
         // loop through each month, creating a link
         // followed by a single space
-        $month_count = count($months);
-        $i = 0;
         foreach ($months as $month) {
-            // display the current month in bold without a link
             if ($year == $current_year && $month->post_month == $current_month) {
-                print "<strong title='$month->post_month_name $year'>$month->display_month</strong>";
+                // display the current month in bold without a link
+                print "<strong title='$month->post_month_name $year'>$month->display_month</strong>\n";
             } else {
-                print "<a href='" . get_month_link($year, $month->post_month) . "' title='$month->post_month_name $year'>" . $month->display_month . "</a>";
+                print "<a href='" . get_month_link($year, $month->post_month) . "' title='$month->post_month_name $year'>" . $month->display_month . "</a>\n";
             }
-
-            if ($i < $month_count-1) {
-                print " \n";
-            }
-            $i++;
         }
-
-        //end the year list item
         print "</li>\n\n";
     }
 }
