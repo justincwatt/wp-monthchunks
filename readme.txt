@@ -1,7 +1,7 @@
 === Monthchunks ===
 Contributors: justincwatt
 Donate link: http://justinsomnia.org/2005/04/monthchunks-howto/
-Tags: archives
+Tags: archive, archives, template tag, wp_get_archives
 Requires at least: 3.0
 Tested up to: 3.4.2
 Stable tag: trunk
