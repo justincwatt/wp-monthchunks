@@ -74,16 +74,20 @@ function monthchunks( $year_order = "ascending", $month_format = "numeric" ) {
 	// each list item will be the year and the months which have blog posts
 	foreach ( $years as $year => $months ) {
 		// start the list item displaying the year
-		print "<li><strong>$year</strong><br />\n";
+		print "<li><strong>" . esc_html( $year ) . " </strong><br />\n";
 		
 		// loop through each month, creating a link
 		// followed by a single space
 		foreach ( $months as $month ) {
+			$tooltip = "title='" . esc_attr( $month->post_month_name . ' ' . $year ) . "'";
+			$month_link = get_month_link( $year, $month->post_month );
+			$month_text = esc_html( $month->display_month );
+
 			if ( $year == $current_year && $month->post_month == $current_month ) {
 				// display the current month in bold without a link
-				print "<strong title='$month->post_month_name $year'>$month->display_month</strong>\n";
+				print "<strong $tooltip>$month_text</strong>\n";
 			} else {
-				print "<a href='" . get_month_link( $year, $month->post_month ) . "' title='$month->post_month_name $year'>" . $month->display_month . "</a>\n";
+				print "<a href='$month_link' $tooltip>$month_text</a>\n";
 			}
 		}
 		print "</li>\n\n";
