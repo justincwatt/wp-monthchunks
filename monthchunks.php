@@ -25,27 +25,27 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-function monthchunks($year_order = "ascending", $month_format = "numeric") {
+function monthchunks( $year_order = "ascending", $month_format = "numeric" ) {
     // get access to wordpress' database object
     global $wpdb;
     $current_month = "";
     $current_year  = "";
     
     // get current year/month if current page is monthly archive
-    if (is_month()) {
-        $current_month = get_the_time('n');
-        $current_year  = get_the_time('Y');
+    if ( is_month() ) {
+        $current_month = get_the_time( 'n' );
+        $current_year  = get_the_time( 'Y' );
     }
     
     // set SQL order by sort order
-    if ($year_order == "descending") {
+    if ( $year_order == "descending" ) {
         $year_order = "DESC";
     } else {
         $year_order = "ASC";
     }
 
     // set format for month display
-    if ($month_format == "alpha") {
+    if ( $month_format == "alpha" ) {
         $month_format = "LEFT(DATE_FORMAT(post_date, '%M'), 1)";
     } else {
         $month_format = "DATE_FORMAT(post_date, '%c')";
@@ -63,27 +63,27 @@ function monthchunks($year_order = "ascending", $month_format = "numeric") {
         HAVING post_year <> '0000'
         ORDER BY post_year $year_order, post_month ASC
     ";
-    $months = $wpdb->get_results($sql);
+    $months = $wpdb->get_results( $sql );
     
     // group month result objects by year, to ease output
     $years = array();
-    foreach ($months as $month) {
+    foreach ( $months as $month ) {
         $years[$month->post_year][] = $month;
     }
 
     // each list item will be the year and the months which have blog posts
-    foreach ($years as $year => $months) {
+    foreach ( $years as $year => $months ) {
         // start the list item displaying the year
         print "<li><strong>$year</strong><br />\n";
         
         // loop through each month, creating a link
         // followed by a single space
-        foreach ($months as $month) {
-            if ($year == $current_year && $month->post_month == $current_month) {
+        foreach ( $months as $month ) {
+            if ( $year == $current_year && $month->post_month == $current_month ) {
                 // display the current month in bold without a link
                 print "<strong title='$month->post_month_name $year'>$month->display_month</strong>\n";
             } else {
-                print "<a href='" . get_month_link($year, $month->post_month) . "' title='$month->post_month_name $year'>" . $month->display_month . "</a>\n";
+                print "<a href='" . get_month_link( $year, $month->post_month ) . "' title='$month->post_month_name $year'>" . $month->display_month . "</a>\n";
             }
         }
         print "</li>\n\n";
