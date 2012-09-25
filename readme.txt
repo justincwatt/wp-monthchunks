@@ -8,7 +8,7 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Compactly display monthly archives by year with links to each month.
+Concisely display monthly archives by year with links to each month.
 
 == Description ==
 
@@ -33,9 +33,9 @@ Serves as a drop in replacement for `wp_get_archives( array( 'type' => 'monthly'
 
 == Frequently Asked Questions ==
 
-= What if I want the years to be displayed in descending order (2012, 2011, 2010...) instead of ascending (the default)? =
+= What if I want the years to be displayed in ascending order (2010, 2011, 2012...) instead of descending (the default)? =
 
-The monthchunks function takes two optional parameters and the first is `year_order`, which accepts two string values: `"ascending"` or `"descending"`.
+The monthchunks function takes two optional parameters and the first is `year_order`, which accepts two string values: `"descending"` or `"ascending"`.
 
 = What if I want the months to be displayed using the first letters of the names of the month (J, F, M...) instead of numbers (the default)? =
 
@@ -46,6 +46,12 @@ The monthchunks function takes two optional parameters and the second is `month_
 1. This is how Monthchunks looks on the Twenty Eleven theme. Here you can see that four years of archives (up to 48 links, eventually) take up only 200 vertical pixels of precious sidebar real estate.
 
 == Changelog ==
+= 2.3 =
+* Use WordPress' Date and Time Locale object to localize month names in tooltip
+* Change default year_order sort to descending (more closely matches wp_get_archives)
+* Appropriately escape html output (though largely unnecessary)
+* Fix: only display archive link for months with posts (not pages)
+
 = 2.2 =
 * Generate output with a single SQL query, instead of N+1, where N was the number of years of post archives
 

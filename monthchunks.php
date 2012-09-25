@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Monthchunks
-Version: 2.2
+Version: 2.3
 Plugin URI: http://justinsomnia.org/2005/04/monthchunks-howto/
-Description: Display your monthly archives compactly by year with individual links to each month. Replacement for <code>wp_get_archives('type=monthly')</code>
+Description: Concisely display monthly archives by year with links to each month. Replacement for <code>wp_get_archives('type=monthly')</code>
 Author: Justin Watt
 Author URI: http://justinsomnia.org/
 
@@ -25,50 +25,67 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-function monthchunks( $year_order = "ascending", $month_format = "numeric" ) {
-	// get access to wordpress' database object
-	global $wpdb;
-	$current_month = "";
-	$current_year  = "";
+function monthchunks( $year_order = "descending", $month_format = "numeric" ) {
+	global $wpdb, $wp_locale;
 	
-	// get current year/month if current page is monthly archive
+	// if current page is monthly archive, get current year/month
 	if ( is_month() ) {
 		$current_month = get_the_time( 'n' );
 		$current_year  = get_the_time( 'Y' );
-	}
-	
-	// set SQL order by sort order
-	if ( $year_order == "descending" ) {
-		$year_order = "DESC";
 	} else {
-		$year_order = "ASC";
+		$current_month = '';
+		$current_year  = '';
 	}
 
-	// set format for month display
-	if ( $month_format == "alpha" ) {
-		$month_format = "LEFT(DATE_FORMAT(post_date, '%M'), 1)";
+	// "cache" month names and month display abbreviations
+	$month_names = array();
+	$month_codes = array(
+		'01' => 1,
+		'02' => 2,
+		'03' => 3,
+		'04' => 4,
+		'05' => 5,
+		'06' => 6,
+		'07' => 7,
+		'08' => 8,
+		'09' => 9,
+		'10' => 10,
+		'11' => 11,
+		'12' => 12
+	);
+
+	foreach ( $month_codes as $key => $value ) {
+		$month_names[$key] = $wp_locale->get_month( $key );
+		if ( $month_format == "alpha" ) {
+			// this might not produce a meaningful output for all locales (e.g. Japanese)
+			$month_codes[$key] = mb_strtoupper( mb_substr( $month_names[$key], 0, 1 ) );
+		}
+	}
+
+	// set SQL order by sort order
+	if ( $year_order == "ascending" ) {
+		$year_order = "ASC";
 	} else {
-		$month_format = "DATE_FORMAT(post_date, '%c')";
+		$year_order = "DESC";
 	}
 
 	// get an array of months in which there are posts
 	$sql = "
 		SELECT DATE_FORMAT(post_date, '%m') as post_month,
-		DATE_FORMAT(post_date, '%Y') as post_year,
-		$month_format as display_month, 
-		DATE_FORMAT(post_date, '%M') as post_month_name
+		DATE_FORMAT(post_date, '%Y') as post_year
 		FROM $wpdb->posts
-		WHERE post_status = 'publish'
+		WHERE post_type = 'post'
+		AND post_status = 'publish'
 		GROUP BY post_year, post_month
 		HAVING post_year <> '0000'
 		ORDER BY post_year $year_order, post_month ASC
 	";
-	$months = $wpdb->get_results( $sql );
+	$archives = $wpdb->get_results( $sql );
 	
-	// group month result objects by year, to ease output
+	// group month archives by year, to ease output
 	$years = array();
-	foreach ( $months as $month ) {
-		$years[$month->post_year][] = $month;
+	foreach ( $archives as $archive ) {
+		$years[$archive->post_year][] = $archive->post_month;
 	}
 
 	// each list item will be the year and the months which have blog posts
@@ -79,11 +96,11 @@ function monthchunks( $year_order = "ascending", $month_format = "numeric" ) {
 		// loop through each month, creating a link
 		// followed by a single space
 		foreach ( $months as $month ) {
-			$tooltip = "title='" . esc_attr( $month->post_month_name . ' ' . $year ) . "'";
-			$month_link = get_month_link( $year, $month->post_month );
-			$month_text = esc_html( $month->display_month );
+			$tooltip = "title='" . esc_attr( $month_names[$month] . ' ' . $year ) . "'";
+			$month_link = get_month_link( $year, $month );
+			$month_text = esc_html( $month_codes[$month] );
 
-			if ( $year == $current_year && $month->post_month == $current_month ) {
+			if ( $year == $current_year && $month == $current_month ) {
 				// display the current month in bold without a link
 				print "<strong $tooltip>$month_text</strong>\n";
 			} else {
