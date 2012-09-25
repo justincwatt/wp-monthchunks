@@ -7,49 +7,8 @@ Description: Display your monthly archives compactly by year with individual lin
 Author: Justin Watt
 Author URI: http://justinsomnia.org/
 
-
-INSTRUCTIONS
-
-1) Save this file as monthchunks.php in /path/to/wordpress/wp-content/plugins/ 
-2) Activate "monthchunks" from the Wordpress control panel
-3) In your sidebar.php template file, replace wp_get_archives('type=monthly'); with monthchunks();
-
-
-CHANGELOG
-
-2.2
-Generate output with a single SQL query, instead of N+1, where N was the number of years of post archives
-
-2.1
-added year_order and month_format options
-added title="month_name year" attribute (aka tooltips) to the month links 
-limited visible archives to posts with post_status = 'publish'
-revised pretty html output slightly
-added semifix for year = "0000" bug
-
-2.0
-removed <ul></ul> output to make monthchunks more of a drop-in replacement for wp_get_archives()
-added logic to de-link from current month
-sort years in chronlogical order
-don't print separator space after last month of year
-
-1.2
-used $wpdb->posts instead of wp_posts as table name
-
-1.1
-used wordpress's get_month_link() function to output link to monthly archive (thanks raphaële)
-
-1.0
-inital version
-turned custom_archive function into monthchunks plugin (thanks jackson)
-
-
 LICENSE
-
-monthchunks.php
-Copyright (C) 2006 Justin Watt
-justincwatt@gmail.com
-http://justinsomnia.org/
+Copyright 2012 Justin Watt justincwatt@gmail.com
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -64,7 +23,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
 */
 
 function monthchunks($year_order = "ascending", $month_format = "numeric") {
