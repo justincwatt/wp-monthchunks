@@ -12,8 +12,7 @@ Concisely display monthly archives by year with links to each month.
 
 == Description ==
 
-Display monthly archives by year with links to each month in a compact format
-similar to the following:
+Display monthly archives by year with links to each month in the following compact format:
 
     2010
     6 7 8 9 10 11 12
