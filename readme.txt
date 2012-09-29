@@ -1,7 +1,7 @@
 === Monthchunks ===
 Contributors: justincwatt
 Donate link: http://justinsomnia.org/2005/04/monthchunks-howto/
-Tags: archive, archives, template tag, wp_get_archives
+Tags: archive, archives, template tag, wp_get_archives, sidebar
 Requires at least: 3.0
 Tested up to: 3.4.2
 Stable tag: trunk
@@ -14,35 +14,35 @@ Concisely display monthly archives by year with links to each month.
 
 Display monthly archives by year with links to each month in the following compact format:
 
-    2010
-    6 7 8 9 10 11 12
+    2012
+    1 2 3 4 5 6 7 8 9
     
     2011
     1 2 3 4 5 6 7 8 9 10 11 12
     
-    2012
-    1 2 3 4 5 6 7 8 9
+    2010
+    6 7 8 9 10 11 12
 
 Serves as a drop in replacement for `wp_get_archives( array( 'type' => 'monthly' )`.
 
 == Installation ==
 
 1. Extract the zip file, drop the contents in your wp-content/plugins/ directory, and then activate from the Plugins page.
-1. Edit your theme file (e.g. sidebar.php) and replace WordPress template tag `wp_get_archives();` with `monthchunks();`
+1. Edit your theme file (e.g. sidebar.php) and replace the WordPress template tag `wp_get_archives();` with `monthchunks();`
 
 == Frequently Asked Questions ==
 
-= What if I want the years to be displayed in ascending order (2010, 2011, 2012...) instead of descending (the default)? =
+= How do I make the years display in ascending order (2010, 2011, 2012...) instead of descending (the default)? =
 
 The monthchunks function takes two optional parameters and the first is `year_order`, which accepts two string values: `"descending"` or `"ascending"`.
 
-= What if I want the months to be displayed using the first letters of the names of the month (J, F, M...) instead of numbers (the default)? =
+= How do I make the months display using the first letters of the month's name (J, F, M...) instead of numbers (the default)? =
 
 The monthchunks function takes two optional parameters and the second is `month_format`, which accepts two string values: `"numeric"` or `"alpha"`.
 
 == Screenshots ==
 
-1. This is how Monthchunks looks on the Twenty Eleven theme. Here you can see that four years of archives (up to 48 links, eventually) take up only 200 vertical pixels of precious sidebar real estate.
+1. This is how Monthchunks looks on the Twenty Eleven theme. Four years of archives (up to 48 links) take up only 200 vertical pixels of precious sidebar real estate. If you're on a monthly archive page, that month's number is bold, but not a link. If you hover over any month, you'll see the full localized month name and year as a *tooltip*.
 
 == Changelog ==
 = 2.3 =
