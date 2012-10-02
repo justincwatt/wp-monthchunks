@@ -23,7 +23,7 @@ Display monthly archives by year with links to each month in the following compa
     2010
     6 7 8 9 10 11 12
 
-Serves as a drop in replacement for `wp_get_archives( array( 'type' => 'monthly' )`.
+Serves as a drop in replacement for [`wp_get_archives( array( 'type' => 'monthly' ) );`](http://codex.wordpress.org/Function_Reference/wp_get_archives).
 
 == Installation ==
 
