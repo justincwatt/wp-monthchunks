@@ -42,7 +42,7 @@ The monthchunks function takes two optional parameters and the second is `month_
 
 == Screenshots ==
 
-1. This is how Monthchunks looks on the Twenty Eleven theme. You can see here than 4 years of archives (eventually 48 links) take up less than 200 vertical pixels of precious sidebar real estate. Note that if you're browsing a monthly archive page, that month's number is bold, but not a link. If you hover over any month's link, you'll see the full localized month name and year as a *tooltip*.
+1. This is how Monthchunks looks with the Twenty Eleven theme. You can see here that 4 years of archives (eventually 48 links) take up less than 200 vertical pixels of precious sidebar real estate. Note that if you're browsing a monthly archive page, that month's number is emboldened, but not linked. If you hover over the link for any month, you'll see the localized month name and year as a *tooltip*.
 
 == Changelog ==
 = 2.3 =
