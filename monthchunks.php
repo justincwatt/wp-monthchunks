@@ -59,6 +59,9 @@ function monthchunks( $year_order = "descending", $month_format = "numeric" ) {
 		if ( $month_format == "alpha" ) {
 			// this might not produce a meaningful output for all locales (e.g. Japanese)
 			$month_codes[$key] = mb_strtoupper( mb_substr( $month_names[$key], 0, 1 ) );
+		} else if ($month_format == "abbreviation") {
+			// this will produce larger abbreviations than "alpha"
+			$month_codes[$key] = $wp_locale->get_month_abbrev($month_names[$key]);
 		}
 	}
 
@@ -110,3 +113,4 @@ function monthchunks( $year_order = "descending", $month_format = "numeric" ) {
 		print "</li>\n\n";
 	}
 }
+?>
