@@ -25,7 +25,8 @@ Display monthly archives by year with links to each month in the following compa
 
 Serves as a drop in replacement for [`wp_get_archives( array( 'type' => 'monthly' ) );`](http://codex.wordpress.org/Function_Reference/wp_get_archives).
 
-If you're interested in contributing to the code behind this plugin, [it's also hosted on GitHub](https://github.com/justincwatt/wp-monthchunks).
+If you're interested in contributing to the code behind this plugin, it's also hosted on GitHub:
+https://github.com/justincwatt/wp-monthchunks
 
 
 == Installation ==
