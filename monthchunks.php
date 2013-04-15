@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Monthchunks
-Version: 2.3
+Version: 2.4
 Plugin URI: http://justinsomnia.org/2005/04/monthchunks-howto/
 Description: Concisely display monthly archives by year with links to each month. Replacement for <code>wp_get_archives('type=monthly')</code>
 Author: Justin Watt
@@ -61,7 +61,7 @@ function monthchunks( $year_order = "descending", $month_format = "numeric" ) {
 			$month_codes[$key] = mb_strtoupper( mb_substr( $month_names[$key], 0, 1 ) );
 		} else if ($month_format == "abbreviation") {
 			// this will produce larger abbreviations than "alpha"
-			$month_codes[$key] = $wp_locale->get_month_abbrev($month_names[$key]);
+			$month_codes[$key] = $wp_locale->get_month_abbrev( $month_names[$key] );
 		}
 	}
 
@@ -113,4 +113,3 @@ function monthchunks( $year_order = "descending", $month_format = "numeric" ) {
 		print "</li>\n\n";
 	}
 }
-?>

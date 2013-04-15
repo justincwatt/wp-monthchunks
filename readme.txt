@@ -25,6 +25,9 @@ Display monthly archives by year with links to each month in the following compa
 
 Serves as a drop in replacement for [`wp_get_archives( array( 'type' => 'monthly' ) );`](http://codex.wordpress.org/Function_Reference/wp_get_archives).
 
+If you're interested in contributing to the code behind this plugin, [it's also hosted on GitHub](https://github.com/justincwatt/wp-monthchunks).
+
+
 == Installation ==
 
 1. Extract the zip file, drop the contents in your wp-content/plugins/ directory, and then activate from the Plugins page.
@@ -36,15 +39,18 @@ Serves as a drop in replacement for [`wp_get_archives( array( 'type' => 'monthly
 
 The monthchunks function takes two optional parameters and the first is `year_order`, which accepts two string values: `"descending"` or `"ascending"`.
 
-= How do I make the months display using the first letters of the month's name (J, F, M...) instead of numbers (the default)? =
+= Can I make months display in a format other than the default month number (1, 2, 3...)?
 
-The monthchunks function takes two optional parameters and the second is `month_format`, which accepts two string values: `"numeric"` or `"alpha"`.
+The monthchunks function takes two optional parameters and the second is `month_format`, which accepts three string values: `"numeric"`, `"alpha"`, or `"abbreviation"`. The "alpha" format displays the first letter of the month (e.g. J, F, M...) which may not make sense in all languages. The "abbreviation" format displays the language-specific abbreviation for the month, e.g. (Jan, Feb, Mar...).
 
 == Screenshots ==
 
 1. This is how Monthchunks looks with the Twenty Eleven theme. You can see here that 4 years of archives (eventually 48 links) take up less than 200 vertical pixels of precious sidebar real estate. Note that if you're browsing a monthly archive page, that month's number is emboldened, but not linked. If you hover over the link for any month, you'll see the localized month name and year as a *tooltip*.
 
 == Changelog ==
+= 2.4 =
+* Added the new "abbreviation" mode for month display (thanks Xavi Ivars)
+
 = 2.3 =
 * Use WordPress' Date and Time Locale object to localize month names in tooltip
 * Change default year_order sort to descending (more closely matches wp_get_archives)
