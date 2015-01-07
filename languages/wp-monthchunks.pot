@@ -1,0 +1,49 @@
+# Copyright (C) 2014 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version:  \n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/wp-monthchunks\n"
+"POT-Creation-Date: 2014-06-16 18:11:45+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: monthchunks.php:36
+msgid "Blog archive"
+msgstr ""
+
+#: widget-monthchunks.php:13
+msgid "MonthChunks - Blog Archives"
+msgstr ""
+
+#: widget-monthchunks.php:72
+msgid "Years order"
+msgstr ""
+
+#: widget-monthchunks.php:76
+msgid "Ascending"
+msgstr ""
+
+#: widget-monthchunks.php:77
+msgid "Descending"
+msgstr ""
+
+#: widget-monthchunks.php:87
+msgid "Mode"
+msgstr ""
+
+#: widget-monthchunks.php:91
+msgid "Numeric"
+msgstr ""
+
+#: widget-monthchunks.php:92
+msgid "Alpha"
+msgstr ""
+
+#: widget-monthchunks.php:93
+msgid "Abbreviation"
+msgstr ""
