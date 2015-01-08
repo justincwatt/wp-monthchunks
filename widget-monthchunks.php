@@ -108,7 +108,7 @@
             $instance['years_order'] = strip_tags( $new_instance['years_order'] );
             $instance['mode'] = strip_tags( $new_instance['mode'] );
 
-            return $instance;
+            return array_merge( $old_instance, $instance);
         }
     }
 
