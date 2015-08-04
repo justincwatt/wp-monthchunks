@@ -34,7 +34,7 @@ if ( ! defined( 'MONTHCHUNKS_FILE' ) ) {
 
 if ( ! class_exists( 'MonthChunks' ) ) {
 
-    define( 'MONTHCHUNKS_YEARS_ORDER', 'ascending' );
+    define( 'MONTHCHUNKS_YEARS_ORDER', 'descending' );
     define( 'MONTHCHUNKS_MODE', 'numeric' );
 
     function monthchunks_load_textdomain() {
@@ -47,7 +47,7 @@ if ( ! class_exists( 'MonthChunks' ) ) {
 
     // Function for backwards compatibility
     function monthchunks( $year_order = "descending", $month_format = "numeric" ) {
-        $mchunks = new MonthChunks();
-        $mchunks->get($year_order, $month_format);
+        $mchunks = new MonthChunks($year_order, $month_format);
+        $mchunks->get();
     }
 }
