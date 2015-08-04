@@ -29,7 +29,7 @@
                 $this->month_format = MONTHCHUNKS_MODE;
             }
 
-            $this->month_names = $this->get_month_names( $month_format );
+            $this->month_names = $this->get_month_names( $this->month_format );
 
             // if current page is monthly archive, get current year/month
             if ( is_month() ) {
