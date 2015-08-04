@@ -49,6 +49,13 @@ The monthchunks function takes two optional parameters and the second is `month_
 1. This is how Monthchunks looks with the Twenty Eleven theme. You can see here that 4 years of archives (eventually 48 links) take up less than 200 vertical pixels of precious sidebar real estate. Note that if you're browsing a monthly archive page, that month's number is emboldened, but not linked. If you hover over the link for any month, you'll see the localized month name and year as a *tooltip*.
 
 == Changelog ==
+
+= 3.0.2 =
+* Fix backwards compatibility calls to monthchunks
+
+= 3.0.1 =
+* Fix admin area issue
+
 = 3.0 = 
 * Major refactor of the code
 ** Created different files to split the backend logic and the widget
