@@ -11,7 +11,7 @@
         private $MONTHCHUNKS_WIDGET_TITLE;
 
         function __construct() {
-            parent::WP_Widget('wp-monthchunks-widget', __('MonthChunks - Blog Archives', 'wp-monthchunks') );
+            parent::__construct('wp-monthchunks-widget', __('MonthChunks - Blog Archives', 'wp-monthchunks') );
             $this->MONTHCHUNKS_WIDGET_TITLE = __( 'Blog archive', 'wp-monthchunks');
         }
 

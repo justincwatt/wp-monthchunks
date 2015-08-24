@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Monthchunks
-Version: 3.0.2
+Version: 3.0.3
 Plugin URI: http://justinsomnia.org/2005/04/monthchunks-howto/
 Description: Concisely display monthly archives by year with links to each month. Replacement for <code>wp_get_archives('type=monthly'). Widget support.</code>
 Author: Justin Watt, Xavi Ivars
