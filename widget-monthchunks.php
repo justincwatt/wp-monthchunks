@@ -11,8 +11,8 @@
         private $MONTHCHUNKS_WIDGET_TITLE;
 
         function __construct() {
-            parent::__construct('wp-monthchunks-widget', __('MonthChunks - Blog Archives', 'wp-monthchunks') );
-            $this->MONTHCHUNKS_WIDGET_TITLE = __( 'Blog archive', 'wp-monthchunks');
+            parent::__construct('wp-monthchunks-widget', __('MonthChunks - Blog Archives', 'monthchunks') );
+            $this->MONTHCHUNKS_WIDGET_TITLE = __( 'Blog archive', 'monthchunks');
         }
 
         function widget($args, $instance) {
@@ -70,12 +70,12 @@
                 
             </p>
             <p>
-                <label for="<?php echo $this->get_field_id('years_order'); ?>"><?php _e('Years order', 'wp-monthchunks'); ?></label>
+                <label for="<?php echo $this->get_field_id('years_order'); ?>"><?php _e('Years order', 'monthchunks'); ?></label>
                 <select name="<?php echo $this->get_field_name('years_order'); ?>" id="<?php echo $this->get_field_id('years_order'); ?>" class="widefat">
                 <?php
                 $order_options = array(
-                    'ascending' => __( 'Ascending' , 'wp-monthchunks' ), 
-                    'descending' => __( 'Descending', 'wp-monthchunks' )
+                    'ascending' => __( 'Ascending' , 'monthchunks' ), 
+                    'descending' => __( 'Descending', 'monthchunks' )
                 );
                 foreach ($order_options as $option => $option_string) {
                     echo '<option value="' . $option . '" id="' . $option . '"', $years_order == $option ? ' selected="selected"' : '', '>', $option_string , '</option>';
@@ -84,13 +84,13 @@
                 </select>
             </p>
             <p>
-                <label for="<?php echo $this->get_field_id('mode'); ?>"><?php _e('Mode', 'wp-monthchunks'); ?></label>
+                <label for="<?php echo $this->get_field_id('mode'); ?>"><?php _e('Mode', 'monthchunks'); ?></label>
                 <select name="<?php echo $this->get_field_name('mode'); ?>" id="<?php echo $this->get_field_id('mode'); ?>" class="widefat">
                 <?php
                 $mode_options = array( 
-                    'numeric' => __( 'Numeric' , 'wp-monthchunks' ), 
-                    'alpha' => __( 'Alpha', 'wp-monthchunks' ),
-                    'abbreviation' => __( 'Abbreviation', 'wp-monthchunks' )
+                    'numeric' => __( 'Numeric' , 'monthchunks' ), 
+                    'alpha' => __( 'Alpha', 'monthchunks' ),
+                    'abbreviation' => __( 'Abbreviation', 'monthchunks' )
                 );
                 foreach ($mode_options as $option => $option_string) {
                     echo '<option value="' . $option . '" id="' . $option . '"', $mode == $option ? ' selected="selected"' : '', '>', $option_string , '</option>';

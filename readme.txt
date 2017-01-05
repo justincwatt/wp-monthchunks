@@ -50,6 +50,10 @@ The monthchunks function takes two optional parameters and the second is `month_
 
 == Changelog ==
 
+= 3.1 =
+* Changed l10n to adjust to new plugin translation process
+** Updated text-domain
+
 = 3.0.4 =
 * Fix PHP Notice, incorrectly using variable instead of instance field. (thanks Birgir Erlendsson - @birgire)
 

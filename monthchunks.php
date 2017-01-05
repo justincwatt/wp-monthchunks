@@ -1,12 +1,15 @@
 <?php
 /*
 Plugin Name: Monthchunks
-Version: 3.0.4
+Version: 3.1
 Plugin URI: http://justinsomnia.org/2005/04/monthchunks-howto/
 Description: Concisely display monthly archives by year with links to each month. Replacement for <code>wp_get_archives('type=monthly'). Widget support.</code>
 Author: Justin Watt, Xavi Ivars
 Author URI: http://justinsomnia.org/
+Text-domain: monthchunks
+*/
 
+/*
 LICENSE
 Copyright 2012 Justin Watt justincwatt@gmail.com
           2013 Xavi Ivars xavi.ivars@gmail.com
@@ -38,7 +41,7 @@ if ( ! class_exists( 'MonthChunks' ) ) {
     define( 'MONTHCHUNKS_MODE', 'numeric' );
 
     function monthchunks_load_textdomain() {
-        load_plugin_textdomain( 'wp-monthchunks', false, dirname( plugin_basename( MONTHCHUNKS_FILE ) ) . '/languages/' );
+        load_plugin_textdomain( 'monthchunks', false, dirname( plugin_basename( MONTHCHUNKS_FILE ) ) . '/languages/' );
     }
     add_action( 'plugins_loaded', 'monthchunks_load_textdomain' );
 
