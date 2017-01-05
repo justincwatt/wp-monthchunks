@@ -3,7 +3,7 @@ Contributors: justincwatt, xavivars
 Donate link: http://justinsomnia.org/2005/04/monthchunks-howto/
 Tags: archive, archives, template tag, wp_get_archives, sidebar
 Requires at least: 3.0
-Tested up to: 4.2.2
+Tested up to: 4.7
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -49,6 +49,12 @@ The monthchunks function takes two optional parameters and the second is `month_
 1. This is how Monthchunks looks with the Twenty Eleven theme. You can see here that 4 years of archives (eventually 48 links) take up less than 200 vertical pixels of precious sidebar real estate. Note that if you're browsing a monthly archive page, that month's number is emboldened, but not linked. If you hover over the link for any month, you'll see the localized month name and year as a *tooltip*.
 
 == Changelog ==
+
+= 3.0.4 =
+* Fix PHP Notice, incorrectly using variable instead of instance field. (thanks Birgir Erlendsson - @birgire)
+
+= 3.0.3 =
+* Improve class constructor
 
 = 3.0.2 =
 * Fix backwards compatibility calls to monthchunks
