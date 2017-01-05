@@ -122,7 +122,7 @@
 
         private function print_month ( $month, $year ) {
 
-            $tooltip = "title='" . esc_attr( $month_names[$month] . ' ' . $year ) . "'";
+            $tooltip = "title='" . esc_attr( $this->month_names[$month] . ' ' . $year ) . "'";
             $month_link = get_month_link( $year, $month );
             $month_text = esc_html( $this->month_codes[$month] );
 
