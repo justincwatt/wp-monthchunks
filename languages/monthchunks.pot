@@ -1,34 +1,56 @@
-# Copyright (C) 2014 
-# This file is distributed under the same license as the  package.
+# Copyright (C) 2019 Justin Watt, Xavi Ivars
+# This file is distributed under the same license as the Monthchunks plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version:  \n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/wp-monthchunks\n"
-"POT-Creation-Date: 2014-06-16 18:11:45+00:00\n"
+"Project-Id-Version: Monthchunks 3.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-monthchunks\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2019-01-08T19:52:22+01:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.1.0\n"
+"X-Domain: monthchunks\n"
 
-#: monthchunks.php:36
-msgid "Blog archive"
+#. Plugin Name of the plugin
+msgid "Monthchunks"
 msgstr ""
 
-#: widget-monthchunks.php:13
+#. Plugin URI of the plugin
+msgid "http://justinsomnia.org/2005/04/monthchunks-howto/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Concisely display monthly archives by year with links to each month. Replacement for <code>wp_get_archives('type=monthly'). Widget support.</code>"
+msgstr ""
+
+#. Author of the plugin
+msgid "Justin Watt, Xavi Ivars"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://justinsomnia.org/"
+msgstr ""
+
+#: widget-monthchunks.php:14
 msgid "MonthChunks - Blog Archives"
 msgstr ""
 
-#: widget-monthchunks.php:72
+#: widget-monthchunks.php:15
+msgid "Blog archive"
+msgstr ""
+
+#: widget-monthchunks.php:73
 msgid "Years order"
 msgstr ""
 
-#: widget-monthchunks.php:76
+#: widget-monthchunks.php:77
 msgid "Ascending"
 msgstr ""
 
-#: widget-monthchunks.php:77
+#: widget-monthchunks.php:78
 msgid "Descending"
 msgstr ""
 

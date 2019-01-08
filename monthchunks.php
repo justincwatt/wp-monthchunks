@@ -6,7 +6,8 @@ Plugin URI: http://justinsomnia.org/2005/04/monthchunks-howto/
 Description: Concisely display monthly archives by year with links to each month. Replacement for <code>wp_get_archives('type=monthly'). Widget support.</code>
 Author: Justin Watt, Xavi Ivars
 Author URI: http://justinsomnia.org/
-Text-domain: monthchunks
+Text Domain: monthchunks
+Domain Path: /languages
 */
 
 /*
@@ -29,7 +30,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define( 'MONTHCHUNKS_VERSION', '3.0' );
+define( 'MONTHCHUNKS_VERSION', '3.1' );
 
 if ( ! defined( 'MONTHCHUNKS_FILE' ) ) {
 	define( 'MONTHCHUNKS_FILE', __FILE__ );
